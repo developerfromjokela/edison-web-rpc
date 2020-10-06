@@ -1,6 +1,6 @@
 package com.developerfromjokela.edison.web.rpc.parser;
 
-import com.developerfromjokela.edison.web.rpc.requests.Request;
+import com.developerfromjokela.edison.web.rpc.requests.*;
 import com.developerfromjokela.edison.web.rpc.responses.ErrorResponse;
 import com.developerfromjokela.edison.web.rpc.server.CommunicationServer;
 import com.google.gson.Gson;
@@ -34,8 +34,18 @@ public class RequestParser {
             return;
         }
         // TODO requests
-        if (true) {
-
+        if (CancelLoginRequest.verifyRequest(intialRequest)) {
+            CancelLoginRequest cancelLoginRequest = new Gson().fromJson(message, CancelLoginRequest.class);
+            cancelLoginRequest.respond(communicationServer, socket);
+        } else if (DataTransferCompleteRequest.verifyRequest(intialRequest)) {
+            DataTransferCompleteRequest cancelLoginRequest = new Gson().fromJson(message, DataTransferCompleteRequest.class);
+            cancelLoginRequest.respond(communicationServer, socket);
+        } else if (DataTransferRequest.verifyRequest(intialRequest)) {
+            DataTransferRequest cancelLoginRequest = new Gson().fromJson(message, DataTransferRequest.class);
+            cancelLoginRequest.respond(communicationServer, socket);
+        } else if (InitializeRequest.verifyRequest(intialRequest)) {
+            InitializeRequest cancelLoginRequest = new Gson().fromJson(message, InitializeRequest.class);
+            cancelLoginRequest.respond(communicationServer, socket);
         } else {
             socket.send(new ErrorResponse(false, 404, "Invalid action!").toString());
         }

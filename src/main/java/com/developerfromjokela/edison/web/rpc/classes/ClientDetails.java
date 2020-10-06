@@ -3,17 +3,29 @@ package com.developerfromjokela.edison.web.rpc.classes;
 import java.util.Date;
 
 public class ClientDetails {
+    public static final String TYPE_APP = "app";
+    public static final String TYPE_WEBCLIENT = "webclient";
+
     private String uuid;
     private String clientType;
     private String loginID;
     private Date joinedDate;
-    private Date lastLoginIDChange;
+    private String currentLoginProcess;
 
     public ClientDetails(String uuid, String clientType, String loginID, Date joinedDate) {
         this.uuid = uuid;
         this.clientType = clientType;
         this.loginID = loginID;
         this.joinedDate = joinedDate;
+        this.currentLoginProcess = null;
+    }
+
+    public String getCurrentLoginProcess() {
+        return currentLoginProcess;
+    }
+
+    public void setCurrentLoginProcess(String currentLoginProcess) {
+        this.currentLoginProcess = currentLoginProcess;
     }
 
     public String getLoginID() {
@@ -22,14 +34,6 @@ public class ClientDetails {
 
     public void setLoginID(String loginID) {
         this.loginID = loginID;
-    }
-
-    public Date getLastLoginIDChange() {
-        return lastLoginIDChange;
-    }
-
-    public void setLastLoginIDChange(Date lastLoginIDChange) {
-        this.lastLoginIDChange = lastLoginIDChange;
     }
 
     public String getUuid() {

@@ -35,6 +35,26 @@ public class CommunicationServer extends WebSocketServer {
 		conn.setAttachment(new ClientDetails(UUID.randomUUID().toString(), null, null, new Date()));
 	}
 
+	public WebSocket getWebClientByLoginId(String loginId) {
+		for (WebSocket socket : getConnections()) {
+			ClientDetails details = socket.getAttachment();
+			if (details.getClientType().equals(ClientDetails.TYPE_WEBCLIENT) && details.getLoginID().equals(loginId)) {
+				return socket;
+			}
+		}
+		return null;
+	}
+
+	public WebSocket getWebClientByUserID(String uuid, String loginId) {
+		for (WebSocket socket : getConnections()) {
+			ClientDetails details = socket.getAttachment();
+			if (details.getClientType().equals(ClientDetails.TYPE_APP) && details.getCurrentLoginProcess().equals(loginId) && details.getUuid().equals(uuid)) {
+				return socket;
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public void onClose( WebSocket conn, int code, String reason, boolean remote ) {
 		// Do absolutely nothing, we don't need to
