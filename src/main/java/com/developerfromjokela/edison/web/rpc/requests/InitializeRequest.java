@@ -74,6 +74,8 @@ public class InitializeRequest extends Request {
                 ClientDetails details = webSocket.getAttachment();
                 String loginID = UUID.randomUUID().toString();
                 details.setLoginID(loginID);
+                // Forcing the web client to change its public key
+                details.setPublicKey(null);
                 webSocket.setAttachment(details);
                 webSocket.send(new LoginIdChangeResponse(loginID).toString());
                 waitForLoginIdRenewal(webSocket);
