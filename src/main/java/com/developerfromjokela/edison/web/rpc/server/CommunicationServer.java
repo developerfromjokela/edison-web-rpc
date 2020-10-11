@@ -32,7 +32,7 @@ public class CommunicationServer extends WebSocketServer {
 	@Override
 	public void onOpen(WebSocket conn, ClientHandshake handshake ) {
 		conn.send(new Gson().toJson(ActionResponse.getAuthenticationAction()));
-		conn.setAttachment(new ClientDetails(UUID.randomUUID().toString(), null, null, new Date()));
+		conn.setAttachment(new ClientDetails(UUID.randomUUID().toString(), null, null, null, new Date()));
 	}
 
 	public WebSocket getWebClientByLoginId(String loginId) {
@@ -58,6 +58,7 @@ public class CommunicationServer extends WebSocketServer {
 	@Override
 	public void onClose( WebSocket conn, int code, String reason, boolean remote ) {
 		// Do absolutely nothing, we don't need to
+		conn.setAttachment(null);
 	}
 
 	@Override

@@ -11,13 +11,23 @@ public class ClientDetails {
     private String loginID;
     private Date joinedDate;
     private String currentLoginProcess;
+    private String publicKey;
 
-    public ClientDetails(String uuid, String clientType, String loginID, Date joinedDate) {
+    public ClientDetails(String uuid, String clientType, String loginID, String publicKey, Date joinedDate) {
         this.uuid = uuid;
         this.clientType = clientType;
         this.loginID = loginID;
         this.joinedDate = joinedDate;
         this.currentLoginProcess = null;
+        this.publicKey = publicKey;
+    }
+
+    public String getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
     }
 
     public String getCurrentLoginProcess() {

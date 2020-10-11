@@ -33,7 +33,6 @@ public class RequestParser {
             socket.send(new ErrorResponse(false, 400, "You must include the action!").toString());
             return;
         }
-        // TODO requests
         if (CancelLoginRequest.verifyRequest(intialRequest)) {
             CancelLoginRequest cancelLoginRequest = new Gson().fromJson(message, CancelLoginRequest.class);
             cancelLoginRequest.respond(communicationServer, socket);
@@ -46,6 +45,12 @@ public class RequestParser {
         } else if (InitializeRequest.verifyRequest(intialRequest)) {
             InitializeRequest cancelLoginRequest = new Gson().fromJson(message, InitializeRequest.class);
             cancelLoginRequest.respond(communicationServer, socket);
+        } else if (LoginIdKeyLink.verifyRequest(intialRequest)) {
+            LoginIdKeyLink loginIdKeyLink = new Gson().fromJson(message, LoginIdKeyLink.class);
+            loginIdKeyLink.respond(communicationServer, socket);
+        } else if (EncryptionKeyRequest.verifyRequest(intialRequest)) {
+            EncryptionKeyRequest encryptionKeyRequest = new Gson().fromJson(message, EncryptionKeyRequest.class);
+            encryptionKeyRequest.respond(communicationServer, socket);
         } else {
             socket.send(new ErrorResponse(false, 404, "Invalid action!").toString());
         }
