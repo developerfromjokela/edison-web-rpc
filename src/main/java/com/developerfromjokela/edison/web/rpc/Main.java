@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             CommunicationServer communicationServer = new CommunicationServer(4551);
+            communicationServer.start();
             BufferedReader sysin = new BufferedReader( new InputStreamReader( System.in ) );
             while ( true ) {
                 String in = sysin.readLine();
@@ -26,4 +27,6 @@ public class Main {
             System.exit(1);
         }
     }
+
+
 }
