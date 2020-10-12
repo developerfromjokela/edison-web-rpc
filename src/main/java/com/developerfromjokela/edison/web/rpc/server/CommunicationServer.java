@@ -48,7 +48,7 @@ public class CommunicationServer extends WebSocketServer {
 	public WebSocket getWebClientByUserID(String uuid, String loginId) {
 		for (WebSocket socket : getConnections()) {
 			ClientDetails details = socket.getAttachment();
-			if (details.getClientType().equals(ClientDetails.TYPE_APP) && details.getCurrentLoginProcess().equals(loginId) && details.getUuid().equals(uuid)) {
+			if (details.getClientType().equals(ClientDetails.TYPE_APP) && (details.getCurrentLoginProcess() != null && details.getCurrentLoginProcess().equals(loginId)) && details.getUuid().equals(uuid)) {
 				return socket;
 			}
 		}
