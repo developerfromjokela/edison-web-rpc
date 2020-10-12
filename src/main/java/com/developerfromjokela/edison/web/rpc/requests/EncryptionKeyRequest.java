@@ -44,6 +44,6 @@ public class EncryptionKeyRequest extends Request {
         }
 
         ClientDetails details = webClientSocket.getAttachment();
-        webClientSocket.send(new PublicKeyResponse(details.getPublicKey()).toString());
+        webSocket.send(new PublicKeyResponse(details.getPublicKey()).toString());
     }
 }
