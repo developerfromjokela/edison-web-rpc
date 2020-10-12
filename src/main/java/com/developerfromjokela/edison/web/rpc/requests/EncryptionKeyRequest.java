@@ -38,7 +38,7 @@ public class EncryptionKeyRequest extends Request {
         }
 
         WebSocket webClientSocket = server.getWebClientByLoginId(loginId);
-        if (webClientSocket == null || !clientDetails.getCurrentLoginProcess().equals(loginId)) {
+        if (webClientSocket == null || (clientDetails.getCurrentLoginProcess() != null && !clientDetails.getCurrentLoginProcess().equals(loginId))) {
             webSocket.send(new ErrorResponse(false, 400, "Invalid Login ID").toString());
             return;
         }
